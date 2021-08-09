@@ -2,6 +2,7 @@ package routes
 
 import (
     "github.com/gofiber/fiber/v2"
+    controllers "./controllers/recordsController"
 //  /give @s minecraft:rick roo   // "github.com/mikefmeyer/catchphrase-go-mongodb-rest-api/controllers" // replace
 )
 
