@@ -212,7 +212,7 @@ func UpdateRecord(c *fiber.Ctx) error {
 
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
 			"success": false,
-			"message": "Cannot update todo",
+			"message": "Cannot update record",
 			"error":   err,
 		})
 	}

@@ -117,7 +117,6 @@ If successful, this method returns a response like:
 | Error Type      | Error Detail       |
 | :---        |    :----:   |          
 | BadRequest(400)     | Server couldn't parse the ID or JSON |    
-| DoesNotExist(400)     | Product with given name already exists|    
 | NotFound(404)      | The ID doesn't exist              | 
 
 ### 4. Delete Operations
