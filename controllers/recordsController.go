@@ -193,7 +193,18 @@ func UpdateRecord(c *fiber.Ctx) error {
 		// todo.Title = *data.Title
 		dataToUpdate = append(dataToUpdate, bson.E{Key: "name", Value: data.Name})
 	}
-
+    if data.DOB != "" {
+		// todo.Title = *data.Title
+		dataToUpdate = append(dataToUpdate, bson.E{Key: "dob", Value: data.DOB})
+	}
+    if data.Address != "" {
+		// todo.Title = *data.Title
+		dataToUpdate = append(dataToUpdate, bson.E{Key: "address", Value: data.Address})
+	}
+    if data.Description != "" {
+		// todo.Title = *data.Title
+		dataToUpdate = append(dataToUpdate, bson.E{Key: "description", Value: data.Description})
+	}
 	update := bson.D{
 		{Key: "$set", Value: dataToUpdate},
 	}
