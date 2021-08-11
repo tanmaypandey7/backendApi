@@ -2,7 +2,7 @@ package controllers
 
 import (
 	connectionhelper "api_golang/db"
-	models "api_golang/records"
+	models "api_golang/models"
 	"log"
 	"os"
 	"time"
