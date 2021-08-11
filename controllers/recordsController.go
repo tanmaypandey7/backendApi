@@ -13,6 +13,8 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
+// Sends a GET request and returns the appropriate response.
+// PARAM: id
 func GetRecord(c *fiber.Ctx) error {
 	recordCollection := connectionhelper.MI.DB.Collection(os.Getenv("COLL"))
 
@@ -31,8 +33,6 @@ func GetRecord(c *fiber.Ctx) error {
 		})
 	}
 
-	// find and delete todo
-	// get the inserted data
 	record := &models.Records{}
 	query := bson.D{{Key: "_id", Value: id}}
 
@@ -57,7 +57,10 @@ func GetRecord(c *fiber.Ctx) error {
 
 }
 
+// Sends a POST request and returns its ID.
+// PARAM: Name, DOB, Address, Description
 func AddRecord(c *fiber.Ctx) error {
+
 	recordCollection := connectionhelper.MI.DB.Collection(os.Getenv("COLL"))
 
 	data := new(models.Records)
@@ -73,11 +76,7 @@ func AddRecord(c *fiber.Ctx) error {
 		})
 	}
 
-	// data.ID = nil
-	// data.Name = "hmm"
-	// data.Completed = &f
 	data.CreatedAt = time.Now()
-	// data.UpdatedAt = time.Now()
 
 	if err != nil {
 		log.Println(err)
@@ -87,6 +86,7 @@ func AddRecord(c *fiber.Ctx) error {
 			"error":   err,
 		})
 	}
+    
 
 	result, err := recordCollection.InsertOne(c.Context(), data)
 	if err != nil {
@@ -105,7 +105,7 @@ func AddRecord(c *fiber.Ctx) error {
 
 }
 
-// DeleteTodo : Delete a todo
+// Sends a DELETE request and returns Success if query is successful.
 // PARAM: id
 func DeleteRecord(c *fiber.Ctx) error {
 	recordCollection := connectionhelper.MI.DB.Collection(os.Getenv("COLL"))
@@ -125,7 +125,7 @@ func DeleteRecord(c *fiber.Ctx) error {
 		})
 	}
 
-	// find and delete todo
+	// find and delete record
 	query := bson.D{{Key: "_id", Value: id}}
 
 	err = recordCollection.FindOneAndDelete(c.Context(), query).Err()
@@ -146,10 +146,13 @@ func DeleteRecord(c *fiber.Ctx) error {
 		})
 	}
 
-	return c.SendStatus(fiber.StatusNoContent)
+    return c.Status(fiber.StatusCreated).JSON(fiber.Map{
+		"success": true,
+		"message": "Record deleted successfully",
+	})
 }
 
-// UpdateTodo : Update a todo
+// Sends a PUT request and returns Success if query is successful.
 // PARAM: id
 func UpdateRecord(c *fiber.Ctx) error {
 	recordCollection := connectionhelper.MI.DB.Collection(os.Getenv("COLL"))
