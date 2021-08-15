@@ -13,7 +13,7 @@ Inserts the product details into the database and returns its id.
 
 #### HTTP Request
 ```bash
-POST http://127.0.0.1:8080/api/product
+POST http://127.0.0.1:8080/api/records/addRecord
 ```
 
 
@@ -43,7 +43,7 @@ The following table identifies error messages that the API could return in respo
 
 | Error Type      | Error Detail       |
 | :---        |    :----:   |          
-| Record failed to insert(500)     | Service was unable to insert record in DB|    
+| Record failed to insert(500)     | Service was unable to insert record in collection|    
 
 ### 2. Read Operations
 
